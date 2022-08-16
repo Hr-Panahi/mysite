@@ -1,9 +1,9 @@
 from django.contrib import admin
-from blog.models import Post
+from blog.models import Post,Category
 # Register your models here.
 
 
-@admin.register(Post)
+#@admin.register(Post) 
 class PostAdmin(admin.ModelAdmin):
     date_hierarchy = 'created_date'
     empty_value_display = "-empty-"
@@ -12,4 +12,5 @@ class PostAdmin(admin.ModelAdmin):
     ordering = ('-created_date',) # "-" doing the reverse order
     search_fields = ('title', 'content')
 # instead of line 6 we can use the line below:
-#admin.site.register(Post.PostAdmin)
+admin.site.register(Category)
+admin.site.register(Post,PostAdmin)
