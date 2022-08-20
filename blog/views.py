@@ -19,5 +19,7 @@ def blog_single(request,id):
     context = {'post':post,'previous_post':previous_post,'next_post':next_post}
     return render(request, 'blog/blog-single.html', context)
 
+def test(request):
+    return render(request,'test.html')
 
 
