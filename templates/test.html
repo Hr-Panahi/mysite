@@ -8,10 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-    <p>{% posts as totalposts %}</p>
-    {% for post in totalposts %}
-        <p>{{post}}</p>
-    {% endfor %}
-    
+    {% popularposts %}
 </body>
 </html>
