@@ -32,5 +32,14 @@ def blog_category(request,cat_name):
     context = {'posts':posts}
     return render(request, 'blog/blog-home.html', context)
 
+def blog_search(request):
+    posts = Post.objects.filter(published_date__lte=timezone.now(),status=1)
+
+    if request.method == 'GET':
+        if s := request.GET.get('s'): #---> using python walrus operator here 
+            posts = posts.filter(content__contains=s)
+    context = {'posts':posts}
+    return render(request, 'blog/blog-home.html',context)
+
 
 
