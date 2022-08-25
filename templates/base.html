@@ -65,7 +65,7 @@
                         <li><a href="{% url 'website:index' %}">Home</a></li>
                         <li><a href="{% url 'website:about' %}">About</a></li>
                         <li><a href="{% url 'blog:index' %}">Blog</a></li>
-                                
+
                         </li>
                         <li class="menu-has-children"><a href="">Pages</a>
                             <ul>
@@ -83,12 +83,14 @@
                 </nav><!-- #nav-menu-container -->
             </div>
         </div>
+        {% include 'message.html' %}
     </header><!-- #header -->
-
+    
+    
     {% block content %}
-
+    
     {% endblock %}
-
+    
     <!-- start footer Area -->
     <footer class="footer-area section-gap">
         <div class="container">
@@ -135,17 +137,16 @@
                             output.
                         </p>
                         <div>
-                            <form 
-                                action="{% url 'website:newsletter' %}"
-                                method="post" class="subscription relative">
+                            <form action="{% url 'website:newsletter' %}" method="post" class="subscription relative">
                                 {% csrf_token %}
                                 <div class="input-group d-flex flex-row">
                                     <input name="email" placeholder="Email Address" onfocus="this.placeholder = ''"
                                         onblur="this.placeholder = 'Email Address '" required="" type="email">
-                                    <button class="btn bb-btn" type="submit"><span class="lnr lnr-location"></span></button>
+                                    <button class="btn bb-btn" type="submit"><span
+                                            class="lnr lnr-location"></span></button>
                                 </div>
                                 <div class="mt-10 info"></div>
-                            </form>              
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -201,5 +202,7 @@
     <script src="{% static 'js/mail-script.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
 </body>
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
 
 </html>

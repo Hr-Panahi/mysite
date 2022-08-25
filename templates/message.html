@@ -1,0 +1,29 @@
+{% if messages %}
+{% for message in messages %}
+<div style="background-size: contain;
+margin-left: 100px; margin-right: 100px; opacity: 85%; text-align: center;" class="alert {{ message.tags }} alert-dismissible " role="alert">
+    <button  type="button" class=" close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong style=" font-weight: bold;font-size: medium; color:darkslategray">{{ message }}</strong>
+</div>
+{% endfor %}
+{% endif %}
+
+{% if form.errors %}
+<div class="alert alert-error">
+    <h4>Please fix the following errors</h4>
+    <ul>
+        {% for field in form %}
+        {% if field.errors %}
+        {% for error in field.errors %}
+        <li><a href="#id_{{ field.name }}" class="">{{ error|escape }}</a></li>
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
+    </ul>
+    {% if form.non_field_errors %}
+    {{ form.non_field_errors }}
+    {% endif %}
+</div>
+{% endif %}
