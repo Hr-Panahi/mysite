@@ -41,10 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+
+    'django_summernote',
     'robots',
     'debug_toolbar',
     'taggit',
-
     'django_extensions',
     'website.apps.WebsiteConfig',
     'blog'
@@ -55,6 +56,19 @@ SITE_ID = 2
 # robots
 ROBOTS_USE_HOST = False
 ROBOTS_USE_SITEMAP = False
+
+# summernote configs
+SUMMERNOTE_THEME = 'bs4'
+SUMMERNOTE_CONFIG = {
+    'iframe':True,
+    'summernote': {
+        'airMode': False,
+
+        'width': '100%',
+        'height': '480',
+        
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
