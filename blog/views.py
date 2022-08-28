@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from blog.forms import CommentForm
 from django.contrib import messages
+
 # Create your views here.
 
 def blog_view(request,**kwargs):
