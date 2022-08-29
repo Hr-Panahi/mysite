@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from blog.models import Post,Comment
 from django.utils import timezone
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -38,15 +38,18 @@ def blog_single(request,id):
 
     posts = Post.objects.filter(published_date__lte=timezone.now(),status=1)
     post = get_object_or_404(posts,id=id)
-    comments = Comment.objects.filter(posts=post.id,approved=True)
-    post.counted_views +=1
-    post.save()
-    next_post = Post.objects.filter(id__gt=post.id).order_by('id').first()
-    previous_post = Post.objects.filter(id__lt=post.id).order_by('id').last()
-    form = CommentForm()
-    context = {'post':post,'previous_post':previous_post,'next_post':next_post, 'comments':comments, 'form':form}
-    return render(request, 'blog/blog-single.html', context)
-
+    if not post.login_require:
+        comments = Comment.objects.filter(posts=post.id,approved=True)
+        post.counted_views +=1
+        post.save()
+        next_post = Post.objects.filter(id__gt=post.id).order_by('id').first()
+        previous_post = Post.objects.filter(id__lt=post.id).order_by('id').last()
+        form = CommentForm()
+        context = {'post':post,'previous_post':previous_post,'next_post':next_post, 'comments':comments, 'form':form}
+        return render(request, 'blog/blog-single.html', context)
+    else:
+        return redirect('/accounts/login')
+ 
 def test(request):
     return render(request,'test.html')
 
