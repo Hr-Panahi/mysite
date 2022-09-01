@@ -1,0 +1,23 @@
+{% extends 'account/account_base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+{% block content %}
+
+</head>
+
+<body>
+  <h1>"Sign Out"</h1>
+  <p>'Are you sure you want to sign out?</p>
+  <form method="post" action="{% url 'account_logout' %}">
+    {% csrf_token %}
+    </div>
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <div class="form-group">
+      <button type="submit">'Sign Out'</button>
+  </form>
+</body>
+{% endblock %}
+</html>

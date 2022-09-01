@@ -51,10 +51,23 @@ INSTALLED_APPS = [
     'django_extensions',
     'website.apps.WebsiteConfig',
     'blog',
-    'accounts'
+    'accounts',
+
+    #django allauth:
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
+
 # sites framework
 SITE_ID = 2
+
+# allauth settings
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+
+
+LOGIN_REDIRECT_URL = '/'
 
 # robots
 ROBOTS_USE_HOST = False
@@ -115,6 +128,14 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+# Allauth config
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 
